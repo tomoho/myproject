@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 '''
-define service provider list
+承运商数据定义在static文件中
 '''
 
 Provider

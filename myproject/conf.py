@@ -9,4 +9,13 @@ import sys
 CURRENT_DIR = os.getcwd()
 FOLDER=[]
 
-def get
+def getfolders():
+  folders=[]
+  listfiles=os.listdir()
+  for i in listfiles:
+    if '.' not in i:
+      folders.append(i)
+  return folders
+      
+FOLDER=getfolders()                              # get current dir folderlist FOLDER
+

@@ -73,9 +73,7 @@ config={
     'description':'track status and send msg through wechat',
     'long_description':read('README.rst'),
     'license':'',
-    'packages':['tianmatrack','message','localrecord','itchat'],
-
-    'author_email':'dongmaopeng@gmail.com',
+    'packages':['message','track','itchat','db'],
     'install_requires':['nose'],
     'scripts':[]
     }

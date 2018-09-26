@@ -3,8 +3,6 @@ import os
 import sys
 from distutils.sysconfig import get_python_lib
 
-
-
 try:
     from setuptools import find_packages,setup
 except ImportError:
@@ -27,12 +25,12 @@ This may because you are using a version of pip that doesn't understand the
 python_requires classifier. Make sure you have pip >=9.0 and setuptools >=
 24.2,then try again:
     $ python -m pip install --upgrade pip setuptools
-    $ python -m pip install shippingtrack
+    $ python -m pip install myproject
     
 This will install the latest version of shippinttrack which works on your
 version of Python. if you can't upgrade your pip(or Python), request an older
 version of shippingtrack
-    $ python -m pip install "shippingtrack<1" 
+    $ python -m pip install "myproject<1" 
 '''.format(*(REQUIRED_PYTHON+CURRENT_PYTHON)))
     sys.exit(1)
 
@@ -45,10 +43,10 @@ if "install" in sys.argv:
     lib_paths=[get_python_lib()]
     if lib_paths[0].startwith("/usr/lib/"):
         # We have to try also with an explicit prefix of /usr/local in order to
-        # catch Debian's custom user site-packages directory.
+        # catch Debian's custom user site-packages directory, for example it is for raspberry pi
         lib_paths.append(get_python_lib(prefix="/usr/local"))
     for lib_path in lib_paths:
-        existing_path=os.path.abspath(os.path.join(lib_path,"shippingtrack"))
+        existing_path=os.path.abspath(os.path.join(lib_path,"myproject"))
         if os.path.exists(existing_path):
             # we note the need for the warning here, but present it after the
             # command is run, so it's more likely to be seen.
@@ -57,7 +55,7 @@ if "install" in sys.argv:
 
 EXCLUDE_FRM_PACKAGES=[]
 # Dynamically calculate the version based on shippingtrack.VERSION
-version =__import__('shippingtrack').get_version()
+version =__import__('myproject').get_version()
 
 def read(fname):
     with open(os.path.join(os.path.dirname(__file__),fname)) as f:
@@ -65,14 +63,14 @@ def read(fname):
         )
 
 config={
-    'name':'shippingtrack',
+    'name':'myproject',
     'version':version,
     'python_requires'='>={}.{}'.format(*REQUIRED_PYTHON),
     'url':'',
     'download_url':'',
     'author':'tomoho',
     'auther_email':'dongmaopeng@gmail.com'
-    'description':'tracking shipping order status and send msg through wechat',
+    'description':'track status and send msg through wechat',
     'long_description':read('README.rst'),
     'license':'',
     'packages':['tianmatrack','message','localrecord','itchat'],

@@ -28,3 +28,4 @@ The function of this module are:
                     top 10 cities in a map
             c. annual report 
      
+I will use text file to store contacts and records, in next version data based will be used.

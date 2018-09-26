@@ -10,29 +10,59 @@ INQUEUE_MSG_FILE = "inqueue message.txt"            # define waitting queue file
 
 from exceptions import *                            # import customed exceptions
 
-def Format(**argv)
+def Msg_NormalFormat(argv):
+  # argv 为列表（快递单号，当前状态，历史记录，内容物）
   msg = '''
+--------------
+快递单号:{}
+**************
+当前状态:{}
+**************
+{}
+**************
+内容物:
+{}
+-------------
+'''.format(*argv)
+  return msg
+def FinalFormat(argv):
+  # argv 是列表(快递单号，内容物，时间，目的地)
+  msg = '''
+--------------------
+您的包裹快递单号:{}
+内容物：
+{}
+********************
+{}已经达到{}，正在派件
+请您注意查收
+  '''.format(*argv)
+  return msg
+def CHFormat(argv):
+  # argv 内容物列表  [[数量，货品名称],....]
+  # argv 历史记录列表[[日期，状态],........]
+  for eachitem in argv:
+    msg+="{}:{}\n".format(eachitem) 
+  return msg
     
-  '''
-
 
 class Message():
     def __init__(self):
-        self.inqueue_msg    =[]                     # define msg list, inside list it is dict 
+        self.inqueue_order    =[]                     # define msg list, inside list it is dict 
         self.static_address ='\\'.join([CURRENT_ADDRESS,INQUEUE_MSG_FILE])
                                                     # define static_file address to store in quere message
-    def flush_msg(self,msglist):
-            try:
-                for eachmsg in msglist:
-                    msg='\t'.join([eachmsg['sender'],eachmsg['receiver']
-                                   eachmsg['subject'],eachmsg['content']])+'\n'
-                                                    # define msg format 
-                    f.write(eachmsg)                # add line into local file 
-                    f.flush()                       # flush to file avoid lose data
-            except KeyError:
-                print('message module key error for msg')
-            except TypeError:
-                print('message module msg Type Error, make sure str in msg')       
+    def flush_msg(self):
+        msglist=self.inqueue_order
+        try:
+            for eachmsg in msglist:
+                msg='\t'.join([eachmsg['sender'],eachmsg['receiver']
+                               eachmsg['subject'],eachmsg['content']])+'\n'
+                                                # define msg format 
+                f.write(eachmsg)                # add line into local file 
+                f.flush()                       # flush to file avoid lose data
+        except KeyError:
+            print('message module key error for msg')
+        except TypeError:
+            print('message module msg Type Error, make sure str in msg')       
     def store_msg(self,msglist,**argus):           # define function to save msglist into file
         try:
             with open(self.static_address,'+a',encoding='utf8') as f:

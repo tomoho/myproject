@@ -8,8 +8,10 @@ import os
 import sys
 CURRENT_DIR = os.getcwd()
 FOLDER=[]
+citys={}                                          #{city:[district1,district2...]...}
+provincial_dict={}                                #{provience:[city1,city2]}
 
-def getfolders():
+def getsubfolders():
   folders=[]
   listfiles=os.listdir()
   for i in listfiles:
@@ -17,7 +19,12 @@ def getfolders():
       folders.append(i)
   return folders
       
-FOLDER=getfolders()                              # get current dir folderlist FOLDER
+FOLDER=getsubfolders()                              # get current dir folderlist FOLDER
+localfiles={
+'citylist':'China_citys.txt',
+'msg_queue':'msg_queue.txt',
+'carrier_list':'Carrier_List.txt'
+}
 
 
   

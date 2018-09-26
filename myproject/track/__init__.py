@@ -1,4 +1,5 @@
-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 '''
 使用时直接导入模块即可运行命令
 ex.
@@ -19,21 +20,22 @@ from .track_engine import *
 instanceList    =   []
 
 def new_instance():
-    newInstance     =   Tracking()
+    newInstance     =   Track()
     instanceList.append(newInstance)
     return newInstance
 
 originInstance =    new_instance()
 
-track           =   originInstance.track_order
+track           =   originInstance.track
 
 '''
-        result = {'stepdetail':stepdetail,
-                  'transdetail':transdetail,
-                  'citys':citys,
-                  'carrier':carrier,
-                  'month':month,
-                  'duration':duration}
-        return result
+result = {
+         'tracknumber':'',
+         'current':[date,time,comments],
+         'details':[[date,time,comments],.........],
+         'current_city':[date,time,city],
+         'carrier':[date,time,carrier],
+         'op_date':[date,time,location],
+         'cl_date':[date,time,location]}
 '''
 

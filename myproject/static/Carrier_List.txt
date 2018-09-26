@@ -1,2 +1,8 @@
-天马	***********	http://www.worldcps.com/Order/Track?TrackNo=
-四方	US***********	http://us.transrush.com/m/track?numbers=
+天马
+***********
+http://www.worldcps.com/Order/Track?TrackNo=
+milestone=订单创建，包裹出库，航班起飞，清关中，国内配送
+四方
+US***********
+http://us.transrush.com/m/track?numbers=
+milestone=营业点已收货，库内操作完成，起飞，清关中，派送中

@@ -4,8 +4,10 @@
 承运商数据定义在static文件中
 '''
 import logging
-logging.basicConfig(filename='logger.text',level=logging.CRITICAL)
+logging.basicConfig(filename='logger.log',level=logging.CRITICAL)
 Version     ='0.0'
 Date    ='20180829'
 
-Provider
+milestone={
+          '天马'=:['订单创建','包裹入库']
+}

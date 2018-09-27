@@ -20,36 +20,49 @@ class Tracking():
         self.header  = ('User-Agent','Mozilla/5.0 (Windows NT 10.0; Trident/7.0; Touch; rv:11.0) like Gecko')
         self.url     = {'tianma':'http://www.worldcps.com/Order/Track?TrackNo=',
                         'sifang':'http://us.transrush.com/track/search.json'}
-        self.carrier = 'tianma'
-        self.data = {'number':None}
     def get_url(self,reference,*args,**kargs):
         # tracking id is string format 
         urlbase=self.url
         carrier=self.carrier
+        data = None
         try:
             if reference.startswith('US'):                              # sifang starts with US
                 carrier = 'sifang'
+                data={'number':reference}
+                url = urlbase.get(carrier)+reference
             else:
                 carrier='tianma'
-            url = urlbase.get(carrier)+reference
+                url = urlbase.get(carrier)+str(reference)
         except Exception as e:                                          # if input int means tianma 
-            logging.debug('输入订单号码为字符串格式',e)
             url = urlbase.get(carrier)+str(reference)
-        self.carrier=carrier                                            # reset carrier name 
-        return url
-    def url_open(self,url,*args,**kargs):
-        '''输入查询网址，返回utf-8解码后的HTML 文件'''
-        header  =   self.header
+        return {'carrier':carrier,
+                'url':url,
+                'data':data}
+    def url_open(self,urlpars,*args,**kargs):
+        '''input urlpars return humen readable HTML'''
+        header  = self.header
+        carrier = urlpars.get('carrier')
+        url = urlpars.get('url')
+        data=urlpars.get('data')
         try:
-            req = request.Request(url)
+            if data != None:                                        # sifang need submit data to url
+                urldata=parse.urlencode(data,encoding='utf8')       # create string data 
+                formdata=urldata.encode('utf8')
+                req=urllib.request.Request(url,data=formdata)
+            else:
+                req = request.Request(url)
             req.add_header(header[0],header[1])
-            html = urllib.request.urlopen(req)
-            Html=html.read().decode('utf-8')
+            html = request.urlopen(req)
+            HTML=html.read().decode('utf-8')
         except Exception as e:
             logging.error('网页打开错误',e)
             return None
-        return Html
-    def get_step_in_Html(self,Html,*args,**kargs):
+        return {'HTML':HTML,
+                'carrier':carrier
+                }
+    def HTML_keyinfo(self,HTMLdict,*args,**kargs):
+        HTML = HTMLdict.get('HTML')
+        carrier = HTMLdict.get('carrier')
         try:
             stepinfo = re.findall(r'<ul class="stepdetail  clearfix tc ml20">(.*?)</ul>',Html,re.M|re.S)[0]
         except Exception as e:

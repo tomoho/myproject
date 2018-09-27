@@ -81,4 +81,8 @@ class Tracker():
                 'EndDeliverySupplierName':EndDeliverySupplierName,
                 'TrackingNumber':TrackingNumber,
                 'history':history}
-    '''history example '''
+    '''history example,just one element in the list 
+    {'TrackID': '30629116', 'ItemID': '1478963', 'TrackStatusCode': 'CP', 
+    'TrackDate': '2018-09-27 11:52:07', 'TrackLocation': '中国港口', 
+    'TrackContent': '清关中', 'CreateDate': '2018-09-27 10:55:49',
+    'UserIDCreate': '0', 'SyncFPX': '1'}'''

@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import urllib.request
+import urllib.request as request
+import urllib.parse as parse
 import re
+import json
 import logging
 from datetime import datetime
 Version     ='0.0'
@@ -9,27 +11,37 @@ Date    ='20180829'
 logging.basicConfig(filename='logger.text',level=logging.CRITICAL)
 
 class Tracking():
+    '''
+    the function of this class is to get query in same format 
+    {
+    }
+    '''
     def __init__(self):
         self.header  = ('User-Agent','Mozilla/5.0 (Windows NT 10.0; Trident/7.0; Touch; rv:11.0) like Gecko')
         self.url     = {'tianma':'http://www.worldcps.com/Order/Track?TrackNo=',
-                        'sifang':'http://us.transrush.com/m/track?numbers='}
-        self.carrierlist    =[]
-        self.city_dict      ={}
-    def get_url(self,trackingid,*args,**kargs):
-        ''' 输入订单号码，返回查询网址'''
-        '''tianma order number is all number
-            sifang order number has started by us'''
+                        'sifang':'http://us.transrush.com/track/search.json'}
+        self.carrier = 'tianma'
+        self.data = {'number':None}
+    def get_url(self,reference,*args,**kargs):
+        # tracking id is string format 
+        urlbase=self.url
+        carrier=self.carrier
         try:
-            search_url  = self.url+trackingid
-        except Exception as e:
+            if reference.startswith('US'):                              # sifang starts with US
+                carrier = 'sifang'
+            else:
+                carrier='tianma'
+            url = urlbase.get(carrier)+reference
+        except Exception as e:                                          # if input int means tianma 
             logging.debug('输入订单号码为字符串格式',e)
-            search_url  = self.tianma_url+str(trackingid)
-        return search_url
-    def url_open(self,urladdress,*args,**kargs):
+            url = urlbase.get(carrier)+str(reference)
+        self.carrier=carrier                                            # reset carrier name 
+        return url
+    def url_open(self,url,*args,**kargs):
         '''输入查询网址，返回utf-8解码后的HTML 文件'''
         header  =   self.header
         try:
-            req =urllib.request.Request(urladdress)
+            req = request.Request(url)
             req.add_header(header[0],header[1])
             html = urllib.request.urlopen(req)
             Html=html.read().decode('utf-8')

@@ -1,30 +1,38 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 '''
-此模块用于生成信息，并保存已经发送的信息
+此模块用于接受网页查询结果，生成微信信息
 '''
 import os
 CURRENT_ADDRESS = os.getcwd()                       # get current address
 INQUEUE_MSG_FILE = "inqueue message.txt"            # define waitting queue file name
-
-
 from exceptions import *                            # import customed exceptions
 
-def Msg_NormalFormat(argv):
-  # argv 为列表（快递单号，当前状态，历史记录，内容物）
-  msg = '''
---------------
-快递单号:{}
-**************
-当前状态:{}
-**************
-{}
-**************
-内容物:
-{}
--------------
-'''.format(*argv)
-  return msg
+'''输入信息格式如下
+{'receiver':ReceiverID,
+ 'ReferenceNumber':ReferenceNumber,
+ 'EndDeliverySupplierName':EndDeliverySupplierName,
+ 'TrackingNumber':TrackingNumber,
+ 'history':history
+ }'''
+class Message():
+  def __init__(self):
+    pass
+  def Msg_NormalFormat(argv):
+    # argv 为列表（快递单号，当前状态，历史记录，内容物）
+    msg = '''
+  --------------
+  快递单号:{}
+  **************
+  当前状态:{}
+  **************
+  {}
+  **************
+  内容物:
+  {}
+  -------------
+  '''.format(*argv)
+    return msg
 def FinalFormat(argv):
   # argv 是列表(快递单号，内容物，时间，目的地)
   msg = '''

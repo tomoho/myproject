@@ -6,14 +6,18 @@ import os,platform
 '''
 import logging
 logging.basicConfig(filename='logger.log',level=logging.CRITICAL)
-VERSION     ='0.0'
-DATE    = '20180829'
+Version     ='0.0'
+Date    = '20180829'
 OS =platform.system
-TIMEOUT = (10,60)
-USER_AGENT = ''
-
-Universial_milestone =['订单创建','包裹出库','航班起飞','正在清关','国内配送']
+Timeout = (10,60)
+User-Agent = 'Mozilla/5.0 (Windows NT 10.0; Trident/7.0; Touch; rv:11.0) like Gecko'
+Url ={'天马':'http://www.worldcps.com/Order/Track?TrackNo=',
+      '四方':'http://us.transrush.com/track/search.json'
+     }
 milestone={
-          '天马':['订单创建','包裹入库']
+          '天马':['订单创建','包裹入库','包裹出库','航班起飞','正在清关','国内配送'],
+          '四方':['订单创建'，]
 }
+Universial_milestone =['订单创建','包裹出库','航班起飞','正在清关','国内配送']
+
 

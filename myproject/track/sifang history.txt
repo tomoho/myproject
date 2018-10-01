@@ -1,8 +1,0 @@
-TrackStatusCode -----> FT      =========> Flight Transport 
-TrackStatusCode -----> LO      =========> Leave Overseas 
-TrackStatusCode -----> OC      =========> Overseas warehouse Change  
-TrackStatusCode -----> OC      =========> Overseas warehouse Change 
-TrackStatusCode -----> AO      =========> Arrive Oveseas warehouse
-TrackStatusCode -----> PU      =========> Pick Up 
-
-

@@ -10,10 +10,11 @@ Class Contact(self):
     self.ID=''
     self.cell=''
     self.wechat=''
-    self.address=[]
+    self.address=[]                         #
   @property  self.name,self.ID,self.address,self.cell
   
-  
+ 
+contacts=[]
   
 def loadcontact(fileaddress):
   # input contact.text file address to load file 
@@ -21,5 +22,7 @@ def loadcontact(fileaddress):
     for line in f:
       contactinfo=f.readline()
       name,ID,cell,wechat,*address=contactinfo.strip('\n').split('\t')
+      contacts.append(Contact(name,ID,cell,wechat,*address))
+      
   
   

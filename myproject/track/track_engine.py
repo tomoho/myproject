@@ -81,7 +81,7 @@ class Tracker():
                 'EndDeliverySupplierName':EndDeliverySupplierName,
                 'TrackingNumber':TrackingNumber,
                 'history':history}
-    '''history example '''
+    '''history example history is a list type , latest index is 0 '''
     def track(self,reference):
         urlpars=self.get_url(reference)
         HTMLdict=self.get_HTML(urlpars)

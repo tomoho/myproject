@@ -20,7 +20,7 @@ def getsubfolders():                              # 定义获取子目录的方�
   return folders
       
 FOLDER=getsubfolders()                              # get current dir folderlist FOLDER
-localfiles={
+Staticfiles={
 'citylist':'China_citys.txt',
 'msg_queue':'msg_queue.txt',
 'carrier_list':'Carrier_List.txt'

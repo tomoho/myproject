@@ -29,6 +29,21 @@ def appendcontact(fileaddress,contact):
     f.write()
     f.flush()
   f.close()
+def in_contact():
+  contact=Contacts()
+  contact.name=input('请输入姓名，姓氏+名字，如韩梅梅：-->')
+  contact.ID = input('请输入ID 号码：-->')
+  contact.cell = input('请输入手机号码：-->')
+  contact.wechat = input('请输入微信号码或备注名：-->')
+  addressnumber = input('请输如地址的数量：-->')
+  for i in range(addressnumber):
+    address=input('请输入第%s个地址：-->')
+    contact.address.append(address)
+  return contact
+ def create_contact():
+    contact=in_contact()
+    appendcontact(filename,contact)
+    
   
   
   

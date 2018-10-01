@@ -23,7 +23,8 @@ FOLDER=getsubfolders()                              # get current dir folderlist
 Staticfiles={
 'citylist':'China_citys.txt',
 'msg_queue':'msg_queue.txt',
-'carrier_list':'Carrier_List.txt'
+'carrier_list':'Carrier_List.txt',
+'contacts':'contact.txt'
 }
 
 

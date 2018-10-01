@@ -20,6 +20,8 @@ milestone={
 }
 
 '''
+TrackStatusCode -----> FO      =========> Flight *****
+TrackStatusCode -----> FI      =========> Flight interchange
 TrackStatusCode -----> FT      =========> Flight Transport 
 TrackStatusCode -----> LO      =========> Leave Overseas 
 TrackStatusCode -----> OC      =========> Overseas warehouse Change  

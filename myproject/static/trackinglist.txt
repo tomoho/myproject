@@ -1,2 +1,2 @@
-reference   receiverid  contents
-US18092331583 3707041986  2*testresult  3*something
+reference   receiverid  trackingstatus  lastlocation  contents
+US18092331583 3707041986  ok  somewhere 2*testresult  3*something

@@ -62,10 +62,11 @@ class Tracker():
         try:   
             for eachrecord in history:
                 content=eachrecord.get('TrackContent')
-                if '到达' in content and '【'in contact:
-                    location=re.findall('【(.*?)】',content)[:2]
+                if '到达' in content and '【'in content:
+                    location=re.findall('【(.*?)】',content)[-1][:2]
                     eachrecord['TrackLocation']=location
-         except Exception:
+        except Exception as e:
+            print(e)
             return history
         return history
     def get_keyinfo(self,HTMLdict,*args,**kargs):

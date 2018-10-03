@@ -58,6 +58,16 @@ class Tracker():
             return None
         return {'HTML':HTML,
                 'carrier':carrier}
+    def location_update(self,history):
+        try:   
+            for eachrecord in history:
+                content=eachrecord.get('TrackContent')
+                if '到达' in content and '【'in contact:
+                    location=re.findall('【(.*?)】',content)[:2]
+                    eachrecord['TrackLocation']=location
+         except Exception:
+            return history
+        return history
     def get_keyinfo(self,HTMLdict,*args,**kargs):
         '''input HTMLdict  return track result'''
         HTML = HTMLdict.get('HTML')
@@ -76,6 +86,7 @@ class Tracker():
         except Exception as e:
             logging.info('未大的节点',e)
             return None
+        history=self.location_update(history)
         return {'receiver':ReceiverID,
                 'ReferenceNumber':ReferenceNumber,
                 'EndDeliverySupplierName':EndDeliverySupplierName,

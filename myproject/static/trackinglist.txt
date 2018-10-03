@@ -1,0 +1,2 @@
+reference   receiverid  contents
+US18092331583 3707041986  2*testresult  3*something

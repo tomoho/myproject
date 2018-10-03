@@ -13,7 +13,7 @@ from exceptions import *                            # import customed exceptions
  'ReferenceNumber':ReferenceNumber,
  'EndDeliverySupplierName':EndDeliverySupplierName,
  'TrackingNumber':TrackingNumber,
- 'history':history
+ 'history':history  # history is a list, element with keys 
  }'''
 class Message():
   def __init__(self):
@@ -22,6 +22,7 @@ class Message():
     # argv 为列表（快递单号，当前状态，历史记录，内容物）
     msg = '''
   --------------
+  收件人：
   快递单号:{}
   **************
   当前状态:{}
